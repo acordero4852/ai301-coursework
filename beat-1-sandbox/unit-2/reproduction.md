@@ -32,12 +32,39 @@ pasted text is what this field is graded on, so copy across what you actually po
 
 **Reproduction comment**
 
-[https://github.com/codepath/pathreview-ai301-fa26-s3/issues/68#issuecomment-5738409951](https://github.com/codepath/pathreview-ai301-fa26-s3/issues/68#issuecomment-5738409951)
+[https://github.com/codepath/pathreview-ai301-fa26-s3/issues/68#issuecomment-5805081660](https://github.com/codepath/pathreview-ai301-fa26-s3/issues/68#issuecomment-5805081660)
 
-[Link to the comment where you posted your reproduction. It must record the environment
-(OS, relevant versions, code state), steps a stranger could follow, and what you observed.
-**Then paste the text of that comment underneath the link** — the pasted text is what this
-field is graded on, so copy across what you actually posted.]
+Reproduced this. Environment: Python 3.14.7, `rank-bm25` 0.2.2, `structlog` 26.1.0 (matches the repo's `rank-bm25>=0.2.2` pin), macOS.
+
+```pycon
+>>> from rag.retriever.keyword_search import KeywordSearcher
+>>> s = KeywordSearcher()
+>>> s.index([])
+Traceback (most recent call last):
+  ...
+  File ".../rank_bm25.py", line 52, in _initialize
+    self.avgdl = num_doc / self.corpus_size
+ZeroDivisionError: division by zero
+```
+
+`index()` always builds a `BM25Okapi` from the tokenized corpus, even when
+`chunks` is empty. With `chunks == []`, `rank_bm25`'s `BM25._initialize`
+divides `num_doc` by `corpus_size`, and `corpus_size` is 0.
+
+Two control runs rule out the rest of the class:
+
+```pycon
+>>> KeywordSearcher().search("python", top_k=10)   # index() never called
+[]                                                   # search()'s own guard handles this fine
+>>> s2 = KeywordSearcher()
+>>> s2.index([{"id": 1, "text": "python programming"}])
+>>> s2.search("python", top_k=10)
+[{'id': 1, 'text': 'python programming', 'bm25_score': -0.27...}]  # non-empty index works as expected
+```
+
+So it's isolated to `index()` not guarding the empty-corpus case the way
+`search()` already does — matches the existing `test_empty_index` xfail
+(manifest H-01). I'll post my plan next.
 
 ## Eval iterations
 

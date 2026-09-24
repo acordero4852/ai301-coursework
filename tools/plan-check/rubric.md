@@ -1,0 +1,16 @@
+# Rubric: is this plan ready to post and build from?
+
+## Checks
+
+| Check | Evidence | Pass condition | Weight |
+|---|---|---|---|
+| Diagnosis | The plan's stated cause, read against the repro evidence block's steps and any control runs it contains. | Pass if the stated cause explains every behavior the repro evidence pins down (including control/contrast runs) and no step in the repro evidence contradicts it. Fail if the cause is ruled out by a control run, addresses a symptom while the evidence points at a different cause, or the plan never engages the repro evidence at all. | required |
+| Scope | The plan's in-scope/not-in-scope statement and the files or areas it names, read against the issue and repro evidence. | Pass if the plan is one bounded change that a maintainer could review as a single fix for this issue, with an explicit not-in-scope line. Fail if the plan bundles the fix with unrelated refactors, migrations, new options/features, or a rewrite of surrounding code the issue never asked for. | required |
+| Executability | The plan's files/areas, approach, and order of work. | Pass if a stranger could start working from the plan alone: named files or areas, a concrete approach, no undecided branch points ("layer A or B, not sure") left for build time. Fail if any real decision (what to change, where, or how) is deferred to whoever builds it. | required |
+| Test plan | The plan's test-plan section, read against the repro evidence's steps and artifacts. | Pass if the test plan names an observable outcome tied to the repro evidence (e.g., re-running the repro's failing step and citing the expected output/exit code, or a specific new test case). Fail if the test plan names no observable check ("run the full suite," "should feel fast/right") or does not connect to the repro evidence at all. | required |
+| Honesty | The plan's stated risks, unknowns, and deferrals, read against how confidently the diagnosis and scope are asserted. | Pass if uncertain claims are marked as uncertain and any deferred work is named as deferred with a reason. Fail if the plan asserts an unverified claim as settled fact, or defers work silently (i.e., scope creep in disguise) rather than naming the deferral. | required |
+| Comms | The candidate plan comment, read against the thread highlights (explicit maintainer/owner direction) and the repo-facts block (stated contribution policy, templates, and any AI-use disclosure requirement). | Pass if the comment engages any explicit maintainer direction present in the thread highlights (or is consistent with it, if none exists) and satisfies the repo-facts block's stated disclosure/contribution requirements. Fail if the comment ignores explicit maintainer direction on the thread, or omits disclosure the repo's stated policy requires. | required |
+
+## Verdict rule
+
+Accept only if every required check passes. Any required check that fails or is unclear holds the package to reject. There are no preferred checks in this rubric: the failure families above (wrong cause, scope creep, unbuildable, undecided test plan, false confidence, ignored thread/policy) each independently get bad plans posted, so any one of them alone must be able to hold a package. Treat `unclear` as `fail` for every check: a plan you cannot verify from the package is not ready to build from.
