@@ -1,0 +1,21 @@
+# Rubric: is this pull request ready to submit?
+
+## Checks
+
+| Check | Evidence | Pass condition | Weight |
+|---|---|---|---|
+| Diff matches plan scope | The diff's changed files and hunks, read against the plan's Files/Scope (and not-in-scope) lines and any deviation note (`plan.md`'s Deviations section in live mode, or the PR description's stated deviations in eval mode). | Pass if every changed file or behavior falls inside the plan's stated scope, or a deviation note explicitly names and explains the mismatch. Fail if the diff does more or less than the plan committed to and no deviation note accounts for the gap. | required |
+| Description matches diff | The PR description's stated changes, read against the diff's actual contents. | Pass if every change the description claims is observable in the diff, and the diff contains nothing the description omits without a deviation note. Fail if the description claims more fidelity than the diff delivers, or is silent about something the diff does. | required |
+| Evidence is observable | The PR's test-evidence section, read against the plan's test plan and the issue's original repro steps. | Pass if the evidence names a specific, observable outcome (a command with its output or exit code, or a named test and its result) tied to what the plan's test plan or the issue asked to verify. Fail if the evidence is an unverifiable assertion ("tests pass", "works now") with nothing observable behind it. | required |
+| Repo's own checks were run | The repo-facts block's stated CI/test commands or suite, read against the test-evidence section. | Pass if, when repo-facts names a standard check or suite, the PR reports running it and states the outcome (pass, or fail with an explanation). Fail if a named check is silently skipped or its outcome is unstated. | required |
+| Diff is reviewable | The unified diff and the commit list. | Pass if every hunk traces to the plan's fix, with no debug leftovers, dead or commented-out code, unrelated formatting churn, or drive-by edits riding along outside the plan's scope. Fail if unrelated or unexplained material buries the actual change. | required |
+| Template sections completed | The repo-facts block's stated PR template sections, read against the PR description. | Pass if every section the template asks for carries real content addressing this PR. Fail if a required section is missing, left as placeholder text, or otherwise unfilled. | required |
+| AI-use disclosure | The repo-facts block's stated AI-use or contribution policy, read against the PR description. | Pass if, when repo-facts states a disclosure requirement, the description discloses accurately. Pass by default if repo-facts states no such requirement. Fail if a stated requirement is met with no disclosure. | required |
+| Maintainer direction engaged | The thread highlights' explicit maintainer/owner direction, read against the PR description. | Pass if, when the thread highlights contain explicit direction, the description is consistent with it or explains a deliberate departure. Pass by default if no such direction exists. Fail if explicit direction is ignored or contradicted with no explanation. | required |
+| Commit hygiene | The commit list. | Pass if commit messages describe what changed and reference the issue number. This never changes the verdict; it only flags a nice-to-have in the summary. | preferred |
+
+## Verdict rule
+
+Accept only if every `required` check grades `pass`. Any `required` check that grades `fail` or `unclear` holds the package to `reject`. `preferred` checks never change the verdict — a package can accept with a `fail` or `unclear` grade on a preferred check, and cannot be saved from a required fail by strong preferred grades. Treat `unclear` as `fail` on every check: a claim the package's own text cannot verify is not a claim ready to submit, required or not.
+
+A disclosed shortfall does not automatically fail. A recorded deviation, an honestly reported partial test result, or a named departure from maintainer direction can still pass its check if the package explains it — these checks grade whether the gap was disclosed and accounted for, not whether the PR delivered everything with no gaps at all. What fails is drift, evidence, debris, or a stated house rule going unaddressed with no explanation in the package.
