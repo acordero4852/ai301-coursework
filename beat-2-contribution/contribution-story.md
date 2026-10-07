@@ -1,4 +1,4 @@
-# Contribution: [Issue Title]
+# Contribution: Keyword search raises `ZeroDivisionError` when the index is empty
 
 Path: `beat-2-contribution/contribution-story.md`
 
@@ -8,11 +8,10 @@ format criteria grade exactly that. Your course repo link is the whole submissio
 files and no evidence uploads are part of Assignment 5.
 
 **Contribution Number:** [1]
-**Student:** [Student name]
-**GitHub Username:** [your GitHub username, exactly as it appears on your profile - no @, no
-profile URL. Your comments upstream are identified by this name.]
-**Issue:** [GitHub issue link]
-**Pull Request:** [GitHub PR link, once opened]
+**Student:** Andy Cordero
+**GitHub Username:** acordero4852
+**Issue:** https://github.com/codepath/pathreview-ai301-fa26-s3/issues/68
+**Pull Request:** https://github.com/codepath/pathreview-ai301-fa26-s3/pull/83
 
 One repository, built across units 5 to 8, telling the whole story of your real
 contribution. Fill it as you work, not at the end — the sections below ask for evidence that
@@ -55,10 +54,9 @@ happened; these entries are the toolkit's own timeline.
 All four entries are graded. Keep every heading below, and fill each
 one in the week it belongs to.
 
-**Unit 5: [one line on the tool work]**
+**Unit 5: issue-scout is my renamed Unit 1 skill, and no scan has run yet**
 
-[2-4 sentences: what you built (the scout, your strategy), what broke
-or fell short, what changed because of it.]
+The installed issue-scout (2026-10-06) is my Unit 1 issue-select skill under a new name. My evidence guide is unchanged, and the rubric has one added clause saying tests, benchmarks and docs for existing behavior are not feature requests. The Unit 5 scout package with search was not available to me, so the tool still only grades issue URLs I hand it, and as of 2026-10-07 my search strategy has no queries and I have run no scan. I picked issue #68 from my Unit 1 live run instead. The only changes so far are a backup of both skills and a draft strategy file that records the gap.
 
 **Unit 6: [one line on the tool work]**
 
@@ -90,6 +88,8 @@ wild search and what you changed or would change, or what convinced
 you it held up. **Record the link to your claim comment in this section too.**
 Not claimed yet? Write `claim pending` and today's date where the link goes,
 and add the link the moment your claim lands.]
+
+**Claim comment:** https://github.com/codepath/pathreview-ai301-fa26-s3/issues/68#issuecomment-5738409951 (posted 2026-09-19)
 
 **Toolkit**
 
@@ -230,20 +230,15 @@ built, decisions you made when you made them, wrong turns included.]
 
 ## Pull Request
 
-**PR Link:** [GitHub PR URL when opened]
+**PR Link:** https://github.com/codepath/pathreview-ai301-fa26-s3/pull/83
 
-**PR Description:** [what the PR says; much of the content above
-adapts into it]
+**PR Description:** PR #83, "fix(rag): guard KeywordSearcher.index() against empty corpus", opened 2026-09-28 from `acordero4852:fix/68-empty-index-zerodivision` into `main` (closes #68). It guards the empty-corpus case in `KeywordSearcher.index()` the way `search()` already does (sets `self.bm25 = None` and returns before building `BM25Okapi`) and removes the `xfail` marker from `test_empty_index` (manifest H-01). Two files changed: `rag/retriever/keyword_search.py` (+4) and `tests/unit/test_keyword_search.py` (-4). The PR body includes an AI-use disclosure.
 
 **Maintainer Feedback:**
 
-- [Date]: [feedback received, or "none yet"; silence is a normal
-  state and costs you nothing]
-- [Date]: [how you addressed it]
+- 2026-10-07: none yet (PR page shows no comments or reviews).
 
-**Status:** [Awaiting review / Iterating / Merged / Closed. The
-status is a fact you record, never a grade: the PR is graded as
-opened.]
+**Status:** Awaiting review (open, not draft, as of 2026-10-07). All CI checks on the PR passed: lint, typecheck, test-unit, test-integration, frontend, and RAG Evaluation.
 
 **Toolkit**
 
