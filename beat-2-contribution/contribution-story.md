@@ -62,10 +62,9 @@ The installed issue-scout (2026-10-06) is my Unit 1 issue-select skill under a n
 
 Facts (verified 2026-10-12): The voice-guard package and its setup instructions were not available to me, so I did not install it and no guard check has run. My claim on #68 was posted on 2026-09-19 without a guard, and no guarded draft exists. I wrote a 28-line `CLAUDE.local.md` in my Path Review clone from `docs/CONTRIBUTING.md`, the Makefile and the PR template, kept out of commits through `.git/info/exclude`; I have not yet confirmed a fresh session loads it. [YOU: what helped, what fell short, and what you changed or would change for each tool.]
 
-**Unit 7: [one line on the tool work]**
+**Unit 7: ship-gate not available, no gate run (2026-10-19)**
 
-[2-4 sentences: the ship-gate and your gate manifest. What it produced
-on your real branch, what fought you, what changed because of it.]
+The ship-gate package, its install instructions and its manifest spec were not available to me, so I did not install it, no gate has run on my branch, and there is no verdict, block or refusal. My own pr-precheck is located and has every file the contract layout requires, and my manifest exists only as an evidence draft outside the clone (`ship-manifest-evidence-draft.md`, 11 sourced rows, no exclusions, schema unresolved), so no `ship-manifest.md` is at the clone root. Checking PR #83, opened 2026-09-28 before any gate, against the diff by hand showed its body wrongly says `self.chunks = []` is set and that the frontend suite passed locally (my local run was stopped with no output); I wrote a corrected draft but have not posted it.
 
 **Unit 8: [one line on the tool work]**
 
@@ -258,10 +257,10 @@ built, decisions you made when you made them, wrong turns included.]
 
 **Toolkit**
 
-- Tool:
-- What it produced:
-- Difficulties:
-- What changed:
+- Tool: ship-gate wrapping my pr-precheck and my manifest was meant to check this PR; it was not available, so I read PR #83 against the diff by hand.
+- What it produced: no gate verdict. A corrected PR body draft (2026-10-19, not posted) and an 11-row manifest evidence draft.
+- Difficulties: the gate package, install instructions and manifest spec were missing, so nothing ran. PR #83 was already open (2026-09-28), so any gate run would be retroactive.
+- What changed: nothing in the branch or PR yet. The body's `self.chunks = []` claim and unverified frontend claim are still live.
 
 ---
 
