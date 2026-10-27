@@ -66,10 +66,9 @@ Facts (verified 2026-10-12): The voice-guard package and its setup instructions 
 
 The ship-gate package, its install instructions and its manifest spec were not available to me, so I did not install it, no gate has run on my branch, and there is no verdict, block or refusal. My own pr-precheck is located and has every file the contract layout requires, and my manifest exists only as an evidence draft outside the clone (`ship-manifest-evidence-draft.md`, 11 sourced rows, no exclusions, schema unresolved), so no `ship-manifest.md` is at the clone root. Checking PR #83, opened 2026-09-28 before any gate, against the diff by hand showed its body wrongly says `self.chunks = []` is set and that the frontend suite passed locally (my local run was stopped with no output); I wrote a corrected draft but have not posted it.
 
-**Unit 8: [one line on the tool work]**
+**Unit 8: PR-monitor not available, no monitor run, PR #83 still unreviewed (2026-10-27)**
 
-[2-4 sentences: the PR-monitor and your playbook. What it read, what it
-drafted, what you did with the draft.]
+The PR-monitor package, its install instructions and the playbook location were not available to me, so I did not install it, wrote no playbook, and it read and drafted nothing. I checked PR #83 and issue #68 by hand on 2026-10-27: no reviews or comments on the PR, all CI checks passing, and the newer #68 comments are other contributors claiming the same issue, not maintainers. I sent no nudge and drafted none. [YOU: your reflection, including whether you would nudge or wait and why, and any threshold you set.]
 
 ---
 
@@ -252,15 +251,16 @@ built, decisions you made when you made them, wrong turns included.]
 **Maintainer Feedback:**
 
 - 2026-10-07: none yet (PR page shows no comments or reviews).
+- 2026-10-27: none yet (0 reviews, 0 comments, 0 inline review comments, no requested reviewers; checked on the public PR page and via `gh`). Issue #68 has no maintainer reply to the PR either; its newer comments are other contributors.
 
-**Status:** Awaiting review (open, not draft, as of 2026-10-07). All CI checks on the PR passed: lint, typecheck, test-unit, test-integration, frontend, and RAG Evaluation.
+**Status:** Awaiting review (open, not draft, as of 2026-10-27; last PR activity 2026-09-28, merge state clean). All CI checks on the PR passed: lint, typecheck, test-unit, test-integration, frontend, and RAG Evaluation (`eval`).
 
 **Toolkit**
 
 - Tool: ship-gate wrapping my pr-precheck and my manifest was meant to check this PR; it was not available, so I read PR #83 against the diff by hand.
 - What it produced: no gate verdict. A corrected PR body draft (2026-10-19, not posted) and an 11-row manifest evidence draft.
 - Difficulties: the gate package, install instructions and manifest spec were missing, so nothing ran. PR #83 was already open (2026-09-28), so any gate run would be retroactive.
-- What changed: nothing in the branch or PR yet. The body's `self.chunks = []` claim and unverified frontend claim are still live.
+- What changed: nothing in the branch or PR yet. The PR-monitor was also unavailable (Unit 8), so I checked status by hand on 2026-10-27 and sent no nudge. The body's `self.chunks = []` claim and unverified frontend claim are still live.
 
 ---
 
